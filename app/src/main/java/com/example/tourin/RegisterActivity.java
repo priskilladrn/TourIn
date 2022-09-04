@@ -1,20 +1,35 @@
 package com.example.tourin;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText username, password, email;
-    Button btnRegister;
-    TextView tvLogin;
+    private EditText username, password, email, retypePassword;
+    private Button btnRegister;
+    private TextView tvLogin;
+    private ProgressBar progressBar;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +38,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         init();
 
+        mAuth = FirebaseAuth.getInstance();
+
         tvLogin.setOnClickListener(v -> {
-            Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
-            startActivity(i);
+            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
         });
 
         btnRegister.setOnClickListener(v -> {
@@ -36,6 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void validate(){
         String usernameText = username.getText().toString();
         String passwordText = password.getText().toString();
+        String retypePasswordText = retypePassword.getText().toString();
         String emailText = email.getText().toString();
 
         if(usernameText.isEmpty()){
@@ -68,16 +85,61 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        //success -> masukin ke firebase
-        Log.wtf("sukses register","success!");
+        if(!passwordText.equals(retypePasswordText)){
+            retypePassword.setError("password must be the same");
+            retypePassword.requestFocus();
+        }
+
+        progressBar.setVisibility(View.VISIBLE);
+        mAuth.createUserWithEmailAndPassword(emailText, passwordText)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful() && task.getResult().getUser()!=null) {
+                            progressBar.setVisibility(View.VISIBLE);
+                            User newUser = new User(usernameText, emailText, passwordText);
+                            FirebaseUser user = task.getResult().getUser();
+                            FirebaseDatabase.getInstance().getReference("Users")
+                                    .child(user.getUid())
+                                    .setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+                                                Toast.makeText(RegisterActivity.this, "Register Successful", Toast.LENGTH_SHORT).show();
+                                                progressBar.setVisibility(View.GONE);
+                                                reload();
+                                            }
+                                        }
+                                    });
+                        } else {
+                            Toast.makeText(RegisterActivity.this, "Failed to register", Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
+                        }
+                    }
+                });
     }
 
     private void init(){
         username = findViewById(R.id.edtNameRegister);
         email = findViewById(R.id.edtEmailRegister);
         password = findViewById(R.id.edtPasswordRegister);
-        btnRegister = findViewById(R.id.btnRegister);
+        retypePassword = findViewById(R.id.edtRetypeRegister);
+        progressBar = findViewById(R.id.progressBarRegister);
         tvLogin = findViewById(R.id.tvLoginRegister);
+        btnRegister = findViewById(R.id.btnRegister);
         tvLogin.setPaintFlags(tvLogin.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            reload();
+        }
+    }
+
+    private void reload() {
+        startActivity(new Intent(this, MainActivity.class));
     }
 }

@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "422908480657",
-    "project_id": "tourin-24e40",
-    "storage_bucket": "tourin-24e40.appspot.com"
+    "project_number": "803783998754",
+    "project_id": "tourin-839e2",
+    "storage_bucket": "tourin-839e2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:422908480657:android:b54ae7b4f3d570670f0330",
+        "mobilesdk_app_id": "1:803783998754:android:400e79e2a44faf047fb97b",
         "android_client_info": {
           "package_name": "com.example.tourin"
         }
       },
       "oauth_client": [
         {
-          "client_id": "422908480657-1lp25ugaasi9e5mmgo4oflv8mslhf3po.apps.googleusercontent.com",
+          "client_id": "803783998754-dv0dfsuhg2su9hg0evdh6i9onod05c95.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAR-Hn68OnEh4gSR8Q2OfDG0PULdt55hDg"
+          "current_key": "AIzaSyAo94yLb4CEz-yg4zCFJzgvooqoQkRg90s"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "422908480657-1lp25ugaasi9e5mmgo4oflv8mslhf3po.apps.googleusercontent.com",
+              "client_id": "803783998754-dv0dfsuhg2su9hg0evdh6i9onod05c95.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

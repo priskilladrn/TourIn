@@ -12,6 +12,17 @@
         android:layout_height="match_parent"
         android:paddingBottom="50dp">
 
+        <ProgressBar
+            android:id="@+id/progressBarRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"
+            android:translationZ="90dp"/>
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -43,10 +54,11 @@
             android:layout_width="340dp"
             android:layout_height="42dp"
             android:layout_marginTop="9dp"
+            android:background="@drawable/round_edittext_login"
             android:paddingHorizontal="10dp"
+            android:singleLine="true"
             app:layout_constraintStart_toStartOf="@+id/tvName"
-            app:layout_constraintTop_toBottomOf="@+id/tvName"
-            android:background="@drawable/round_edittext_login" />
+            app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
         <TextView
             android:id="@+id/tvEmail"
@@ -66,10 +78,11 @@
             android:layout_width="340dp"
             android:layout_height="42dp"
             android:layout_marginTop="9dp"
+            android:background="@drawable/round_edittext_login"
             android:paddingHorizontal="10dp"
+            android:singleLine="true"
             app:layout_constraintStart_toStartOf="@+id/tvEmail"
-            app:layout_constraintTop_toBottomOf="@+id/tvEmail"
-            android:background="@drawable/round_edittext_login" />
+            app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
 
         <TextView
             android:id="@+id/tvPassword"
@@ -116,6 +129,7 @@
             android:background="@drawable/round_edittext_login"
             android:inputType="textPassword"
             android:paddingHorizontal="10dp"
+            android:singleLine="true"
             app:layout_constraintStart_toStartOf="@+id/tvRetypeRegister"
             app:layout_constraintTop_toBottomOf="@+id/tvRetypeRegister" />
 
