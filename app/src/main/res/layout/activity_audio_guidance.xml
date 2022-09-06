@@ -7,7 +7,7 @@
     tools:context=".AudioGuidance">
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/ivFotoLokasiAudio"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
@@ -25,7 +25,7 @@
         android:orientation="vertical"/>
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ivHitam"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="#2B000000"
@@ -34,6 +34,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/tvNamaTempatAudio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -42,7 +43,7 @@
         android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/ivHitam"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,6 +56,7 @@
         app:layout_constraintBottom_toTopOf="@+id/linearLayout">
 
         <TextView
+            android:id="@+id/tvDetikMulaiAudio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
@@ -63,7 +65,7 @@
             android:textSize="16dp" />
 
         <SeekBar
-            android:id="@+id/seekBar"
+            android:id="@+id/seekBarAudio"
             android:layout_width="300dp"
             android:layout_height="25dp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
@@ -71,6 +73,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
+            android:id="@+id/tvDetikAkhirAudio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
@@ -91,23 +94,31 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
+            android:id="@+id/ivRewindAudio"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:src="@drawable/ic_fast_rewind" />
 
         <ImageView
+            android:id="@+id/ivPauseAudio"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginHorizontal="25dp"
-            android:src="@drawable/ic_pause" />
+            android:src="@drawable/ic_pause"
+            android:visibility="visible"/>
 
         <ImageView
+            android:id="@+id/ivPlayAudio"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginHorizontal="25dp"
+            android:src="@drawable/ic_play"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/ivFastAudio"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:src="@drawable/ic_fast_forward" />
     </LinearLayout>
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
