@@ -2,10 +2,10 @@ package com.example.tourin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -31,9 +31,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     ImageView imageView;
     Button start;
     FloatingActionButton floatingActionButton;
-    double latitude, longitude;
 
-    String region, name, description, imageUrl, PlaceId;
+    public String region, name, description, imageUrl, PlaceId, Longitude, Audio, Latitude;
 
     final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tourin-839e2-default-rtdb.firebaseio.com/");
 
@@ -52,22 +51,51 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         floatingActionButton = findViewById(R.id.fab);
         floatingActionButton.setOnClickListener(this);
 
-        //get data from intent
-        region = "Toraja";
-        name = "Kete Kesu";
-        description = "Description of Kete Kesu";
-        imageUrl = "https://travelspromo.com/wp-content/uploads/2020/06/kete-kesu-rumah-adat-tongkonan.jpg";
-        PlaceId = "MU001";
-        latitude = -2.996558;
-        longitude = 119.910355;
+        //get id from intent
+        PlaceId = getIntent().getStringExtra("id");
 
-        //set data here
+        //find data from place Id
+        databaseReference.child("Places").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot child: snapshot.getChildren()){
+                    for(DataSnapshot id : child.getChildren()){
+                        String key = id.getKey();
+                        Log.wtf("keyhasil", key);
+
+                        if(key.equals(PlaceId)){
+                            region = id.child("Location").getValue().toString();
+                            name = id.child("Name").getValue().toString();
+                            description = id.child("Description").getValue().toString();
+                            imageUrl = id.child("Image").getValue().toString();
+                            Audio = id.child("Audio").getValue().toString();
+                            Latitude = id.child("Latitude").getValue().toString();
+                            Longitude = id.child("Longitude").getValue().toString();
+
+                            //set data here
+                            setData(region, name, description, imageUrl);
+                        }
+                    }
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    }
+
+    void setData(String region, String name, String description, String imageUrl){
         tvRegion.setText(region);
-        tvName.setText(region);
+        tvName.setText(name);
         tvDescription.setText(description);
         Glide.with(this).load(imageUrl).into(imageView);
-
-        loadFragment();
     }
 
     @Override
@@ -107,10 +135,5 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             //start intent
             this.startActivity(i);
         }
-    }
-
-    private void loadFragment(){
-        Fragment fragment = new MapsFragment(latitude, longitude, name);
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayoutDetail,fragment,null).commit();
     }
 }

@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Vector;
 
-public class SavedFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class SavedFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     String imageUrl, name, placeId, region;
     Place places;
