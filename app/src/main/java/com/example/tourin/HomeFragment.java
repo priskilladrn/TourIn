@@ -12,9 +12,10 @@ import android.widget.Button;
 
 public class HomeFragment extends Fragment implements View.OnClickListener{
     Button detail;
+    private User currUser;
 
-    public HomeFragment() {
-        // Required empty public constructor
+    public HomeFragment(User currUser) {
+        this.currUser = currUser;
     }
 
     @Override
