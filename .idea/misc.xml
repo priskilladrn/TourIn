@@ -12,10 +12,13 @@
         <entry key="..\:/TourIn_Ureeka_/app/src/main/res/layout/fragment_profile.xml" value="0.14356884057971014" />
         <entry key="..\:/TourIn_Ureeka_/app/src/main/res/layout/fragment_saved.xml" value="0.14356884057971014" />
         <entry key="..\:/TourIn_Ureeka_/app/src/main/res/layout/fragment_search.xml" value="0.14356884057971014" />
+        <entry key="app/src/main/res/drawable/ic_fast_forward.xml" value="0.173" />
+        <entry key="app/src/main/res/drawable/ic_pause.xml" value="0.173" />
         <entry key="app/src/main/res/drawable/round_edittext_login.xml" value="0.1155" />
         <entry key="app/src/main/res/drawable/underline_text.xml" value="0.174" />
+        <entry key="app/src/main/res/layout/activity_audio_guidance.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.26403985507246375" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.26403985507246375" />
       </map>
