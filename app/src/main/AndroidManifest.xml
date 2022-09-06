@@ -34,6 +34,9 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+        <activity android:name=".PopUpWIndow"
+            android:exported="false"
+            android:theme="@style/CustomTheme"/>
     </application>
 
 </manifest>

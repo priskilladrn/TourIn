@@ -97,7 +97,7 @@
             android:id="@+id/ivRewindAudio"
             android:layout_width="65dp"
             android:layout_height="65dp"
-            android:src="@drawable/ic_fast_rewind" />
+            android:src="@drawable/ic_replay" />
 
         <ImageView
             android:id="@+id/ivPauseAudio"
@@ -119,6 +119,6 @@
             android:id="@+id/ivFastAudio"
             android:layout_width="65dp"
             android:layout_height="65dp"
-            android:src="@drawable/ic_fast_forward" />
+            android:src="@drawable/ic_forward" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

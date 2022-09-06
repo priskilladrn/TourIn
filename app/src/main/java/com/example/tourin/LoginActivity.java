@@ -48,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
         tvForgotPassword.setOnClickListener(v -> {
             //auth ke firebase
+            startActivity(new Intent(this, PopUpWIndow.class));
         });
     }
 
@@ -73,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful() && task.getResult() != null && task.getResult().getUser()!=null) {
                             progressBar.setVisibility(View.VISIBLE);
-                            reload();
+                            reload(task.getResult().getUser().getUid());
                         } else {
                             Toast.makeText(LoginActivity.this, "Failed to Login", Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
@@ -98,11 +99,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            reload();
+            reload(currentUser.getUid());
         }
     }
 
-    private void reload() {
-        startActivity(new Intent(this, MainActivity.class));
+    private void reload(String uid) {
+        Log.wtf("user id", uid);
+        Intent i = new Intent(this, MainActivity.class);
+        i.putExtra("userId", uid);
+        startActivity(i);
     }
 }

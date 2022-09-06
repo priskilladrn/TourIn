@@ -107,7 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             if(task.isSuccessful()){
                                                 Toast.makeText(RegisterActivity.this, "Register Successful", Toast.LENGTH_SHORT).show();
                                                 progressBar.setVisibility(View.GONE);
-                                                reload();
+                                                reload(user.getUid());
                                             }
                                         }
                                     });
@@ -135,11 +135,14 @@ public class RegisterActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            reload();
+            reload(currentUser.getUid());
         }
     }
 
-    private void reload() {
-        startActivity(new Intent(this, MainActivity.class));
+    private void reload(String uid) {
+        Log.wtf("user id", uid);
+        Intent i = new Intent(this, MainActivity.class);
+        i.putExtra("userId", uid);
+        startActivity(i);
     }
 }
