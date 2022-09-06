@@ -13,6 +13,7 @@ import android.widget.Button;
 public class HomeFragment extends Fragment implements View.OnClickListener{
     Button detail;
     private User currUser;
+    String PlaceId;
 
     public HomeFragment(User currUser) {
         this.currUser = currUser;
@@ -30,6 +31,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         detail = view.findViewById(R.id.toDetail);
         detail.setOnClickListener(this);
+
+        //set id place id
+        PlaceId = "MU001";
+
         return view;
     }
 
@@ -38,6 +43,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         if(v==detail){
             Intent i = new Intent(v.getContext(), DetailActivity.class);
             //send id di extras
+            i.putExtra("id", PlaceId);
             startActivity(i);
         }
     }

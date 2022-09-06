@@ -1,7 +1,9 @@
 package com.example.tourin.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.tourin.DetailActivity;
 import com.example.tourin.Model.Place;
 import com.example.tourin.R;
 import com.example.tourin.SavedFragment;
@@ -54,15 +57,15 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.ViewHolder> 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        CardView savedView;
+        CardView view;
         ImageView imageView;
         TextView tvName, tvLocation;
         String placeId;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            savedView = itemView.findViewById(R.id.savedView);
-            savedView.setOnClickListener(this);
+            view = itemView.findViewById(R.id.savedView);
+            view.setOnClickListener(this);
             imageView = itemView.findViewById(R.id.locationPic);
             tvName = itemView.findViewById(R.id.tvName);
             tvLocation = itemView.findViewById(R.id.tvLocation);
@@ -70,9 +73,12 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.ViewHolder> 
 
         @Override
         public void onClick(View v) {
-            if(v == savedView){
+            if(v == view){
                 //go to detail and send extras
-
+                Log.wtf("test123123", "masuk");
+                Intent i = new Intent(v.getContext(), DetailActivity.class);
+                i.putExtra("id", placeId);
+                v.getContext().startActivity(i);
             }
         }
     }
