@@ -2,6 +2,7 @@ package com.example.tourin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,7 +33,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     Button start;
     FloatingActionButton floatingActionButton;
 
-    public String region, name, description, imageUrl, PlaceId, Longitude, Audio, Latitude;
+    public String region, name, description, imageUrl, PlaceId, Audio;
+    public Double latitude, longitude;
 
     final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tourin-839e2-default-rtdb.firebaseio.com/");
 
@@ -69,17 +71,15 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                             description = id.child("Description").getValue().toString();
                             imageUrl = id.child("Image").getValue().toString();
                             Audio = id.child("Audio").getValue().toString();
-                            Latitude = id.child("Latitude").getValue().toString();
-                            Longitude = id.child("Longitude").getValue().toString();
+                            latitude = (Double) id.child("Latitude").getValue();
+                            longitude = (Double) id.child("Longitude").getValue();
 
                             //set data here
                             setData(region, name, description, imageUrl);
+                            loadFragment();
                         }
                     }
-
                 }
-
-
             }
 
             @Override
@@ -135,5 +135,10 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             //start intent
             this.startActivity(i);
         }
+    }
+
+    private void loadFragment(){
+        Fragment fragment = new MapsFragment(latitude, longitude, name);
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayoutDetail,fragment,null).commit();
     }
 }
