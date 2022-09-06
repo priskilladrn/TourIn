@@ -54,7 +54,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         region = "Toraja";
         name = "Kete Kesu";
         description = "Description of Kete Kesu";
-        imageUrl = "\"gs://tourin-839e2.appspot.com/kete kesu/1643705108.jpeg\"";
+        imageUrl = "https://travelspromo.com/wp-content/uploads/2020/06/kete-kesu-rumah-adat-tongkonan.jpg";
         PlaceId = "MU001";
 
         //set data here
@@ -70,23 +70,27 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             Place places = new Place(region, name, imageUrl, PlaceId);
             FirebaseAuth auth = FirebaseAuth.getInstance();
             FirebaseUser currentUser = auth.getCurrentUser();
-            databaseReference.child("Users").child(currentUser.getUid()).child("post").orderByChild("idPlace").equalTo(PlaceId).addListenerForSingleValueEvent(new ValueEventListener() {
+            databaseReference.child("Users").child(currentUser.getUid()).child("post").orderByChild("placeId").equalTo(PlaceId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    //id exist then remove from like
-                    for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                        dataSnapshot.getRef().removeValue();
+                    if(snapshot.exists()){
+                        //id exist then remove from saved
+                        for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                            dataSnapshot.getRef().removeValue();
+                        }
+                        Toast.makeText(DetailActivity.this, "Removed from Saved List", Toast.LENGTH_SHORT).show();
+                    }else{
+                        //add to saved
+                        DatabaseReference reference = databaseReference.child("Users").child(currentUser.getUid()).child("post").push();
+                        reference.setValue(places);
+
+                        Toast.makeText(DetailActivity.this, "Added to Saved List", Toast.LENGTH_SHORT).show();
                     }
-                    Toast.makeText(DetailActivity.this, "Removed from Favorite List", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    //add to like
-                    DatabaseReference reference = databaseReference.child("users").child(currentUser.getUid()).child("post").push();
-                    reference.setValue(places);
 
-                    Toast.makeText(DetailActivity.this, "Added to Favorite List", Toast.LENGTH_SHORT).show();
                 }
             });
         }else if(v == start){

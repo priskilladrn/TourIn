@@ -14,13 +14,13 @@
         android:theme="@style/Theme.TourIn"
         tools:targetApi="31">
         <activity
-            android:name=".SplashScreen"
+            android:name=".DetailActivity"
             android:exported="false" />
         <activity
             android:name=".AudioGuidance"
             android:exported="false" />
         <activity
-            android:name=".DetailActivity"
+            android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
