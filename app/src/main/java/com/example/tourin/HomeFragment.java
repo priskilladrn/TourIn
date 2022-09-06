@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.tourin.Model.User;
+
 public class HomeFragment extends Fragment implements View.OnClickListener{
     Button detail;
     private User currUser;

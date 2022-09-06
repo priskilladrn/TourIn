@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.tourin">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,6 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TourIn"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBIS2YGWD2y35GTB8mmAIEqe-IEvnLdHVE" />
+
         <activity
             android:name=".DetailActivity"
             android:exported="false" />
@@ -37,9 +44,10 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-        <activity android:name=".PopUpWIndow"
+        <activity
+            android:name=".PopUpWIndow"
             android:exported="false"
-            android:theme="@style/CustomTheme"/>
+            android:theme="@style/CustomTheme" />
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package com.example.tourin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     ImageView imageView;
     Button start;
     FloatingActionButton floatingActionButton;
+    double latitude, longitude;
 
     String region, name, description, imageUrl, PlaceId;
 
@@ -56,12 +58,16 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         description = "Description of Kete Kesu";
         imageUrl = "https://travelspromo.com/wp-content/uploads/2020/06/kete-kesu-rumah-adat-tongkonan.jpg";
         PlaceId = "MU001";
+        latitude = -2.996558;
+        longitude = 119.910355;
 
         //set data here
         tvRegion.setText(region);
         tvName.setText(region);
         tvDescription.setText(description);
         Glide.with(this).load(imageUrl).into(imageView);
+
+        loadFragment();
     }
 
     @Override
@@ -101,5 +107,10 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             //start intent
             this.startActivity(i);
         }
+    }
+
+    private void loadFragment(){
+        Fragment fragment = new MapsFragment(latitude, longitude, name);
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayoutDetail,fragment,null).commit();
     }
 }
