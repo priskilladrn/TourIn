@@ -47,7 +47,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         tvForgotPassword.setOnClickListener(v -> {
-            //auth ke firebase
             startActivity(new Intent(this, PopUpWIndow.class));
         });
     }

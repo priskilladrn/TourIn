@@ -27,7 +27,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:mbn_backgroundBottomColor="#D7DDEB"
         app:mbn_circleColor="@color/white"
-        app:mbn_defaultIconColor="@color/white"
+        app:mbn_defaultIconColor="@color/real_white"
         app:mbn_selectedIconColor="#127DBC"/>
 
 
