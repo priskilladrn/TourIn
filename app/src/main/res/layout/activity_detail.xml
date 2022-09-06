@@ -20,7 +20,7 @@
                 android:layout_width="fill_parent"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                android:layout_height="wrap_content"
+                android:layout_height="350dp"
                 android:layout_gravity="center"
                 android:id="@+id/detailPic"
                 android:src="@drawable/ic_launcher_background"
@@ -32,11 +32,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Region"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:id="@+id/detailRegion"
                 android:textColor="#646161"
-                android:textStyle="bold"
-                android:layout_marginBottom="15dp"
+                android:textFontWeight="7"
+                android:layout_marginBottom="10dp"
                 android:textSize="18dp"
                 />
 
@@ -46,11 +46,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Location Name"
-                android:layout_marginTop="5dp"
                 android:id="@+id/detailName"
                 android:textColor="#161616"
                 android:textStyle="bold"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="20dp"
                 android:textSize="30dp"
                 />
 
@@ -61,9 +60,8 @@
                 android:layout_height="wrap_content"
                 android:text="Descriptions"
                 android:textSize="20dp"
-                android:layout_marginTop="25dp"
+                android:textFontWeight="5"
                 android:textColor="#161616"
-                android:textStyle="bold"
                 />
             <TextView
                 android:paddingLeft="15dp"
@@ -74,6 +72,7 @@
                 android:textColor="#4D4C4C"
                 android:justificationMode="inter_word"
                 android:id="@+id/detailDescription"
+                android:textFontWeight="4"
                 android:text="Descriptions"/>
 
             <Button
