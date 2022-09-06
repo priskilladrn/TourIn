@@ -2,63 +2,113 @@ package com.example.tourin;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SavedFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class SavedFragment extends Fragment {
+import com.example.tourin.Adapter.SavedAdapter;
+import com.example.tourin.Model.Place;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import java.util.Vector;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class SavedFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+
+    String imageUrl, name, placeId, region;
+    Place places;
+    RecyclerView savedRv;
+    SavedAdapter savedAdapter;
+    Vector<Place> placesVector = new Vector<>();
+    SwipeRefreshLayout swipeRefreshLayout;
+
+    final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tourin-839e2-default-rtdb.firebaseio.com/");
 
     public SavedFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SavedFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SavedFragment newInstance(String param1, String param2) {
-        SavedFragment fragment = new SavedFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_saved, container, false);
+        View view = inflater.inflate(R.layout.fragment_saved, container, false);
+        placesVector.clear();
+        savedRv = view.findViewById(R.id.savedRv);
+        savedAdapter = new SavedAdapter(getContext());
+        savedAdapter.notifyDataSetChanged();
+
+        //swipe refresh layout
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
+        swipeRefreshLayout.setOnRefreshListener(this);
+
+        swipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                swipeRefreshLayout.setRefreshing(true);
+
+                //fetch data
+                getData();
+            }
+        });
+
+        savedAdapter.setSaved(placesVector);
+        savedRv.setAdapter(savedAdapter);
+        savedRv.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        return view;
+    }
+
+    void getData(){
+        swipeRefreshLayout.setRefreshing(true);
+        placesVector.clear();
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        databaseReference.child("Users").child(currentUser.getUid()).child("post").addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    imageUrl = dataSnapshot.child("imageUrl").getValue().toString();
+                    name = dataSnapshot.child("name").getValue().toString();
+                    placeId = dataSnapshot.child("placeId").getValue().toString();
+                    region = dataSnapshot.child("region").getValue().toString();
+
+                    places = new Place(region, name, imageUrl, placeId);
+                    placesVector.add(places);
+                }
+
+                savedAdapter.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onRefresh() {
+        getData();
     }
 }
