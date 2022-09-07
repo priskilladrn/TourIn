@@ -131,6 +131,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             //when button start is pressed, intent page to audio guidance page
             Intent i = new Intent(DetailActivity.this, AudioGuidance.class);
             //send extras
+            i.putExtra("name", name);
+            i.putExtra("audio", Audio);
+            i.putExtra("imageUrl", imageUrl);
 
             //start intent
             this.startActivity(i);
