@@ -1,4 +1,4 @@
-package com.example.tourin;
+package com.example.tourin.Model;
 
 public class User {
     private String name, email, password;
