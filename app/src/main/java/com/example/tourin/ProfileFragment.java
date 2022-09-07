@@ -32,10 +32,8 @@ public class ProfileFragment extends Fragment {
     }
 
     public static ProfileFragment newInstance() {
-
-        Bundle args = new Bundle();
         ProfileFragment fragment = new ProfileFragment();
-        fragment.setArguments(args);
+        Bundle args = new Bundle();
         return fragment;
     }
 
@@ -49,23 +47,29 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_profile, container, false);
 
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = auth.getCurrentUser();
-
-
         tvUsername = view.findViewById(R.id.textUserName);
         tvEmail = view.findViewById(R.id.textUserEmail);
         btnLogoutMain = view.findViewById(R.id.btnLogoutMain);
 
-//        Query query = databaseReference.orderByChild("email").equalTo(firebaseUser.getEmail());
+        setData();
 
+        btnLogoutMain.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getContext(), LoginActivity.class));
+        });
+
+
+        return view;
+    }
+    void setData(){
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
         databaseReference.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     String username = dataSnapshot.child("name").getValue().toString();
                     String email = dataSnapshot.child("email").getValue().toString();
-
                     tvUsername.setText(username);
                     tvEmail.setText(email);
                 }
@@ -77,14 +81,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-
-        btnLogoutMain.setOnClickListener(v -> {
-            FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(getContext(), LoginActivity.class));
-        });
-
-
-        return view;
     }
 
 }
