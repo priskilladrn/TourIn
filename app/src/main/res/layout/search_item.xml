@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_margin="15dp"
+    app:cardCornerRadius="20dp"
+    android:id="@+id/searchView">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="233dp"
+            app:cardCornerRadius="20dp"
+            android:layout_marginBottom="10dp">
+
+            <ImageView
+                android:id="@+id/ivPhotoSearch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logotourin"/>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tvNamaTempatSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="5dp"
+            android:text="Nama Tempat"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textColor="#212226"/>
+
+        <TextView
+            android:id="@+id/tvLocationSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Location"
+            android:textSize="20dp"
+            android:textColor="@color/dark_gray"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
