@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D7DDEB">
+
+    <ImageView
+        android:id="@+id/ivClosePopup"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/ic_close" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Send Email to Reset Password"
+            android:textColor="@color/dark_gray"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="50dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Email"
+            android:textColor="@color/dark_gray"
+            android:textSize="17dp"/>
+
+        <EditText
+            android:id="@+id/edtEmailPopup"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginHorizontal="30dp"
+            android:background="@drawable/round_edittext_login"
+            android:paddingHorizontal="10dp"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/btnResetPopup"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="reset password"
+            android:layout_marginTop="65dp"
+            android:layout_gravity="center"
+            android:background="@color/blue"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
