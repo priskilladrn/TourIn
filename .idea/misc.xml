@@ -7,9 +7,11 @@
         <entry key="..\:/TourIn_Ureeka_/app/src/main/res/drawable/ic_profile.xml" value="0.1045" />
         <entry key="..\:/TourIn_Ureeka_/app/src/main/res/drawable/ic_save.xml" value="0.1045" />
         <entry key="..\:/TourIn_Ureeka_/app/src/main/res/drawable/ic_search.xml" value="0.1045" />
+        <entry key="..\:/TourIn_Ureeka_/app/src/main/res/layout/activity_login.xml" value="0.14990942028985507" />
         <entry key="..\:/TourIn_Ureeka_/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/TourIn_Ureeka_/app/src/main/res/layout/activity_profile.xml" value="0.22" />
         <entry key="..\:/TourIn_Ureeka_/app/src/main/res/layout/fragment_home.xml" value="0.1" />
-        <entry key="..\:/TourIn_Ureeka_/app/src/main/res/layout/fragment_profile.xml" value="0.14356884057971014" />
+        <entry key="..\:/TourIn_Ureeka_/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
         <entry key="..\:/TourIn_Ureeka_/app/src/main/res/layout/fragment_saved.xml" value="0.14356884057971014" />
         <entry key="..\:/TourIn_Ureeka_/app/src/main/res/layout/fragment_search.xml" value="0.14356884057971014" />
         <entry key="app/src/main/res/drawable/round_edittext_login.xml" value="0.1155" />

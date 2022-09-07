@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -27,6 +29,9 @@ public class LoginActivity extends AppCompatActivity {
     private TextView tvRegister, tvForgotPassword;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
+    DocumentReference documentReference;
+    String currentUserId;
+
 
 
     @Override
@@ -37,6 +42,8 @@ public class LoginActivity extends AppCompatActivity {
         init();
 
         mAuth = FirebaseAuth.getInstance();
+        currentUserId = mAuth.getUid();
+
 
         tvRegister.setOnClickListener(v -> {
             startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
@@ -73,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful() && task.getResult() != null && task.getResult().getUser()!=null) {
                             progressBar.setVisibility(View.VISIBLE);
+
                             reload();
                         } else {
                             Toast.makeText(LoginActivity.this, "Failed to Login", Toast.LENGTH_SHORT).show();
@@ -91,6 +99,8 @@ public class LoginActivity extends AppCompatActivity {
         tvForgotPassword = findViewById(R.id.tvForgotPassword);
         tvRegister = findViewById(R.id.tvRegisterLogin);
         tvRegister.setPaintFlags(tvRegister.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
+
     }
 
     @Override
@@ -103,6 +113,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void reload() {
-        startActivity(new Intent(this, MainActivity.class));
+        Intent pindahHome = new Intent(this,MainActivity.class);
+        startActivity(pindahHome);
     }
+
 }

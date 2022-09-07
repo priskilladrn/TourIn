@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity {
 
     MeowBottomNavigation bottomNavigation;
+    String username, email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
