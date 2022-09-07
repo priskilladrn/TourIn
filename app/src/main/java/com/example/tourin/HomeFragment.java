@@ -26,7 +26,7 @@ public class HomeFragment extends Fragment {
 
         btnTodetail.setOnClickListener(v -> {
             Intent i = new Intent(getContext(), DetailActivity.class);
-            i.putExtra("id", "MU001");
+            i.putExtra("id", "MU002");
             startActivity(i);
         });
 

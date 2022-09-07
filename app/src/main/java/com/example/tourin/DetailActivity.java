@@ -63,7 +63,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                 for (DataSnapshot child: snapshot.getChildren()){
                     for(DataSnapshot id : child.getChildren()){
                         String key = id.getKey();
-                        Log.wtf("keyhasil", key);
+                        Log.wtf("keyhasil", key+"ok");
 
                         if(key.equals(PlaceId)){
                             region = id.child("Location").getValue().toString();
@@ -74,9 +74,13 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                             latitude = (Double) id.child("Latitude").getValue();
                             longitude = (Double) id.child("Longitude").getValue();
 
+
+                            Log.wtf("keyhasil", "test masuk");
                             //set data here
                             setData(region, name, description, imageUrl);
                             loadFragment();
+                        }else{
+                            Log.wtf("keyhasil", "test gagal");
                         }
                     }
                 }
@@ -96,6 +100,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         tvName.setText(name);
         tvDescription.setText(description);
         Glide.with(this).load(imageUrl).into(imageView);
+        Log.wtf("keyhasil", region+name+description);
     }
 
     @Override
