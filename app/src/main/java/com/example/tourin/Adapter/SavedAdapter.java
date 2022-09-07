@@ -75,7 +75,7 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.ViewHolder> 
         public void onClick(View v) {
             if(v == view){
                 //go to detail and send extras
-                Log.wtf("test123123", "masuk");
+                Log.wtf("test123123", "masuk" + placeId);
                 Intent i = new Intent(v.getContext(), DetailActivity.class);
                 i.putExtra("id", placeId);
                 v.getContext().startActivity(i);
