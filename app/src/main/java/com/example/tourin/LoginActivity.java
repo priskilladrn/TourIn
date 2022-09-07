@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +19,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -29,9 +27,6 @@ public class LoginActivity extends AppCompatActivity {
     private TextView tvRegister, tvForgotPassword;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
-    DocumentReference documentReference;
-    String currentUserId;
-
 
 
     @Override
@@ -42,8 +37,6 @@ public class LoginActivity extends AppCompatActivity {
         init();
 
         mAuth = FirebaseAuth.getInstance();
-        currentUserId = mAuth.getUid();
-
 
         tvRegister.setOnClickListener(v -> {
             startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
@@ -54,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         tvForgotPassword.setOnClickListener(v -> {
-            //auth ke firebase
+            startActivity(new Intent(this, PopUpWIndow.class));
         });
     }
 
@@ -80,8 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful() && task.getResult() != null && task.getResult().getUser()!=null) {
                             progressBar.setVisibility(View.VISIBLE);
-
-                            reload();
+                            reload(task.getResult().getUser().getUid());
                         } else {
                             Toast.makeText(LoginActivity.this, "Failed to Login", Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
@@ -99,8 +91,6 @@ public class LoginActivity extends AppCompatActivity {
         tvForgotPassword = findViewById(R.id.tvForgotPassword);
         tvRegister = findViewById(R.id.tvRegisterLogin);
         tvRegister.setPaintFlags(tvRegister.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-
-
     }
 
     @Override
@@ -108,13 +98,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            reload();
+            reload(currentUser.getUid());
         }
     }
 
-    private void reload() {
-        Intent pindahHome = new Intent(this,MainActivity.class);
-        startActivity(pindahHome);
+    private void reload(String uid) {
+        Log.wtf("user id", uid);
+        Intent i = new Intent(this, MainActivity.class);
+        i.putExtra("userId", uid);
+        startActivity(i);
     }
-
 }
