@@ -72,6 +72,7 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_marginTop="10dp"
+                                android:src="@drawable/museum"
                                 />
 
                             <TextView
@@ -103,6 +104,7 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_marginTop="10dp"
+                                android:src="@drawable/waters"
                                 />
 
                             <TextView
@@ -134,6 +136,7 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_marginTop="10dp"
+                                android:src="@drawable/mountain"
                                 />
 
                             <TextView
@@ -165,6 +168,7 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_marginTop="10dp"
+                                android:src="@drawable/ceremonies"
                                 />
 
                             <TextView
@@ -196,6 +200,7 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_marginTop="10dp"
+                                android:src="@drawable/dance"
                                 />
 
                             <TextView
@@ -227,6 +232,7 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_marginTop="10dp"
+                                android:src="@drawable/food"
                                 />
 
                             <TextView
@@ -253,6 +259,64 @@
                 android:textStyle="bold"
                 android:textSize="24dp"
                 />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="17dp"
+                    android:layout_marginLeft="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="186dp"
+                                android:layout_height="100dp"
+                                android:src="@drawable/danau" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Kolam Air Limbong"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="186dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/negridiatasawan" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Negri Diatas Awan"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+
+
+
+
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
 
 
         </LinearLayout>
