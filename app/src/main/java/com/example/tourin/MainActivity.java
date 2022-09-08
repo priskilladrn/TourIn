@@ -1,5 +1,6 @@
 package com.example.tourin;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -10,16 +11,41 @@ import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
     MeowBottomNavigation bottomNavigation;
-    String username, email;
+    String username, email, uid;
+    final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tourin-839e2-default-rtdb.firebaseio.com/");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        uid = getIntent().getStringExtra("userId");
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        databaseReference.child("Users").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                username = snapshot.child("name").getValue().toString();
+                email = snapshot.child("email").getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
         bottomNavigation = findViewById(R.id.bottom_navigation);
 
@@ -34,9 +60,11 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment;
 
                 if(item.getId()==4){
-                    fragment = new ProfileFragment();
+                    fragment = new ProfileFragment(username, email);
                 }else if(item.getId()==3){
-                    fragment = new SearchFragment();
+                    startActivity(new Intent(MainActivity.this, SearchActivity.class));
+                    finish();
+                    fragment = new HomeFragment();
                 }else if(item.getId()==2){
                     fragment = new SavedFragment();
                 }else{

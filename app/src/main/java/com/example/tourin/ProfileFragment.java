@@ -24,15 +24,17 @@ import com.google.firebase.database.ValueEventListener;
 public class ProfileFragment extends Fragment {
     private Button btnLogoutMain;
     TextView tvUsername,tvEmail;
+    private String username, email;
 
     final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tourin-839e2-default-rtdb.firebaseio.com/");
-    public ProfileFragment() {
+    public ProfileFragment(String username, String email) {
         // Required empty public constructor
-
+        this.username = username;
+        this.email = email;
     }
 
     public static ProfileFragment newInstance() {
-        ProfileFragment fragment = new ProfileFragment();
+        ProfileFragment fragment = new ProfileFragment(newInstance().username, newInstance().email);
         Bundle args = new Bundle();
         return fragment;
     }
@@ -62,25 +64,26 @@ public class ProfileFragment extends Fragment {
         return view;
     }
     void setData(){
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = auth.getCurrentUser();
-        databaseReference.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    String username = dataSnapshot.child("name").getValue().toString();
-                    String email = dataSnapshot.child("email").getValue().toString();
-                    tvUsername.setText(username);
-                    tvEmail.setText(email);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
+        tvEmail.setText(email);
+        tvUsername.setText(username);
+//        FirebaseAuth auth = FirebaseAuth.getInstance();
+//        FirebaseUser currentUser = auth.getCurrentUser();
+//        databaseReference.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+//                    String username = dataSnapshot.child("name").getValue().toString();
+//                    String email = dataSnapshot.child("email").getValue().toString();
+//                    tvUsername.setText(username);
+//                    tvEmail.setText(email);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
     }
 
 }
