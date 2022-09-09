@@ -1,8 +1,10 @@
 package com.example.tourin;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -31,7 +33,7 @@ public class AudioGuidance extends AppCompatActivity {
     private MediaPlayer mp;
     private Integer length;
     private final Handler mHandler = new Handler();
-    private boolean isPaused;
+    private boolean isPaused, isFinished = false;
     private Runnable runnable;
 
     @Override
@@ -40,6 +42,7 @@ public class AudioGuidance extends AppCompatActivity {
         setContentView(R.layout.activity_audio_guidance);
 
         isPaused = false;
+        isFinished = false;
         name = getIntent().getStringExtra("name");
         audio = getIntent().getStringExtra("audio");
         imageUrl = getIntent().getStringExtra("imageUrl");
@@ -80,23 +83,47 @@ public class AudioGuidance extends AppCompatActivity {
     }
 
     private void setSeekBar() {
-        //update ui every second
+        //update ui every second if audio not finished
         runnable = new Runnable() {
             @Override
             public void run() {
-                if(mp != null){
+                if (mp != null && !isFinished) {
                     seekBarAudio.setProgress(mp.getCurrentPosition() / 1000);
-                    if(mp.getCurrentPosition() >= mp.getDuration()){
+                    if (mp.getCurrentPosition() >= mp.getDuration()) {
                         ivPauseAudio.setVisibility(View.GONE);
                         ivPlayAudio.setVisibility(View.VISIBLE);
                         tvDetikMulaiAudio.setText(formatDuration(mp.getDuration()));
-                        Toast.makeText(AudioGuidance.this, "kelar", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }else {
+                        isFinished = true;
+                    } else {
                         tvDetikMulaiAudio.setText(formatDuration(mp.getCurrentPosition()));
                     }
+                    mHandler.postDelayed(this, 1000);
                 }
-                mHandler.postDelayed(this, 1000);
+                else if(isFinished) {
+                    AlertDialog.Builder alertBuilder = new AlertDialog.Builder(AudioGuidance.this);
+                    alertBuilder.setTitle("Tour Completed")
+                            .setMessage("Congratulations you’ve reached the end of the tour!")
+                            .setNegativeButton("Replay", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    mp.seekTo(0);
+                                    mp.start();
+                                    isFinished = false;
+                                    ivPauseAudio.setVisibility(View.VISIBLE);
+                                    ivPlayAudio.setVisibility(View.GONE);
+                                    mHandler.postDelayed(runnable, 1000);
+                                }
+                            })
+                            .setPositiveButton("Back to Home", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    if (mp != null) mp.release();
+                                    mHandler.removeCallbacks(runnable);
+                                    startActivity(new Intent(AudioGuidance.this, MainActivity.class));
+                                    finish();
+                                }
+                            }).show();
+                }
             }
         };
         AudioGuidance.this.runOnUiThread(runnable);
@@ -226,5 +253,4 @@ public class AudioGuidance extends AppCompatActivity {
         if (mp != null) mp.release();
         mHandler.removeCallbacks(runnable);
     }
-
 }
