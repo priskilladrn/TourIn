@@ -24,7 +24,6 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        btnTodetail = view.findViewById(R.id.btnTodetail);
         cardViewMuseum = view.findViewById(R.id.boxMuseum);
         cardViewWaters = view.findViewById(R.id.boxWaters);
         cardViewMountain = view.findViewById(R.id.boxMountain);
@@ -32,11 +31,6 @@ public class HomeFragment extends Fragment {
         cardViewDances = view.findViewById(R.id.boxDances);
         cardViewFoods = view.findViewById(R.id.boxFoods);
 
-        btnTodetail.setOnClickListener(v -> {
-            Intent i = new Intent(getContext(), DetailActivity.class);
-            i.putExtra("id", "MU002");
-            startActivity(i);
-        });
 
         cardViewMuseum.setOnClickListener(v -> {
             Intent museum = new Intent(getContext(), MuseumActivity.class);
