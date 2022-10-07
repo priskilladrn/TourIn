@@ -129,7 +129,7 @@
                 android:layout_marginTop="5dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="Create new account"
-                android:textColor="@color/blue"
+                android:textColor="#00479D"
                 android:textSize="16dp" />
         </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
