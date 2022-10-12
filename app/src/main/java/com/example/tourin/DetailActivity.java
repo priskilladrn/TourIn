@@ -30,7 +30,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
     TextView tvRegion, tvName, tvDescription;
     ImageView imageView;
-    Button start;
+    Button start, ar;
     FloatingActionButton floatingActionButton;
 
     public String region, name, description, imageUrl, PlaceId, Audio;
@@ -48,7 +48,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         tvName = findViewById(R.id.detailName);
         tvDescription = findViewById(R.id.detailDescription);
         start = findViewById(R.id.buttonStart);
+        ar = findViewById(R.id.btnAr);
         start.setOnClickListener(this);
+        ar.setOnClickListener(this);
         imageView = findViewById(R.id.detailPic);
         floatingActionButton = findViewById(R.id.fab);
         floatingActionButton.setOnClickListener(this);
@@ -142,6 +144,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
             //start intent
             this.startActivity(i);
+        } else if(v == ar){
+            this.startActivity(new Intent(DetailActivity.this, ArActivity.class));
         }
     }
 
