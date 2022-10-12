@@ -2,9 +2,11 @@ package com.example.tourin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.tourin.Model.Place;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.ar.sceneform.lullmodel.Color;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -119,12 +122,12 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                         for(DataSnapshot dataSnapshot: snapshot.getChildren()){
                             dataSnapshot.getRef().removeValue();
                         }
+
                         Toast.makeText(DetailActivity.this, "Removed from Saved List", Toast.LENGTH_SHORT).show();
                     }else{
                         //add to saved
                         DatabaseReference reference = databaseReference.child("Users").child(currentUser.getUid()).child("post").push();
                         reference.setValue(places);
-
                         Toast.makeText(DetailActivity.this, "Added to Saved List", Toast.LENGTH_SHORT).show();
                     }
                 }
