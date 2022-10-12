@@ -6,25 +6,27 @@
     app:cardCornerRadius="25dp"
     android:id="@+id/savedView"
     android:layout_margin="10dp"
-    android:background="@color/white">
+    android:background="@color/real_white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:layout_margin="10dp"
-        >
+        android:padding="10dp"
+        android:background="@color/real_white">
 
         <androidx.cardview.widget.CardView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:cardCornerRadius="10dp">
+            app:cardCornerRadius="10dp"
+            android:background="@color/real_white">
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:id="@+id/locationPic"
                 android:src="@drawable/ic_launcher_background"
                 android:clipToOutline="true"
+                android:background="@color/white"
                 />
         </androidx.cardview.widget.CardView>
 

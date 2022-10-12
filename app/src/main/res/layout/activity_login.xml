@@ -118,7 +118,8 @@
                 android:layout_height="wrap_content"
                 android:text="Don't have an account?"
                 android:layout_marginTop="5dp"
-                android:textSize="16dp"/>
+                android:textSize="16dp"
+                android:textColor="@color/dark_gray"/>
 
             <TextView
                 android:id="@+id/tvRegisterLogin"

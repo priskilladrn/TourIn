@@ -6,19 +6,22 @@
     android:orientation="vertical"
     android:layout_margin="15dp"
     app:cardCornerRadius="20dp"
-    android:id="@+id/searchView">
+    android:id="@+id/searchView"
+    app:cardBackgroundColor="@color/real_white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="8dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/real_white">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="233dp"
             app:cardCornerRadius="20dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            app:cardBackgroundColor="@color/real_white">
 
             <ImageView
                 android:id="@+id/ivPhotoSearch"

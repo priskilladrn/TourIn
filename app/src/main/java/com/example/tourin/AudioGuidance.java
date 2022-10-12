@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -25,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 public class AudioGuidance extends AppCompatActivity {
     private ImageView ivFotoLokasiAudio,ivRewindAudio,ivPauseAudio,ivFastAudio, ivPlayAudio;
     private SeekBar seekBarAudio;
-    private TextView tvNamaTempatAudio,tvDetikAkhirAudio, tvDetikMulaiAudio;
+    private TextView tvNamaTempatAudio,tvDetikAkhirAudio;
 
     private String imageUrl;
     private String audio;
@@ -35,6 +36,7 @@ public class AudioGuidance extends AppCompatActivity {
     private final Handler mHandler = new Handler();
     private boolean isPaused, isFinished = false;
     private Runnable runnable;
+    private long duration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,15 +94,15 @@ public class AudioGuidance extends AppCompatActivity {
                     if (mp.getCurrentPosition() >= mp.getDuration()) {
                         ivPauseAudio.setVisibility(View.GONE);
                         ivPlayAudio.setVisibility(View.VISIBLE);
-                        tvDetikMulaiAudio.setText(formatDuration(mp.getDuration()));
+                        tvDetikAkhirAudio.setText(formatDuration(duration - mp.getDuration()));
                         isFinished = true;
                     } else {
-                        tvDetikMulaiAudio.setText(formatDuration(mp.getCurrentPosition()));
+                        tvDetikAkhirAudio.setText(formatDuration(duration - mp.getCurrentPosition()));
                     }
                     mHandler.postDelayed(this, 1000);
                 }
                 else if(isFinished) {
-                    AlertDialog.Builder alertBuilder = new AlertDialog.Builder(AudioGuidance.this);
+                    AlertDialog.Builder alertBuilder = new AlertDialog.Builder(new ContextThemeWrapper(AudioGuidance.this, R.style.AlertDialogCustom));
                     alertBuilder.setTitle("Tour Completed")
                             .setMessage("Congratulations you’ve reached the end of the tour!")
                             .setNegativeButton("Replay", new DialogInterface.OnClickListener() {
@@ -151,7 +153,7 @@ public class AudioGuidance extends AppCompatActivity {
                     } else {
                         mp.seekTo(seekBar.getProgress() * 1000);
                     }
-                    tvDetikMulaiAudio.setText(formatDuration(mp.getCurrentPosition()));
+                    tvDetikAkhirAudio.setText(formatDuration(duration - mp.getCurrentPosition()));
                 }
             }
             //Notification that the user has finished a touch gesture.
@@ -168,7 +170,7 @@ public class AudioGuidance extends AppCompatActivity {
                     } else {
                         mp.seekTo(seekBar.getProgress() * 1000);
                     }
-                    tvDetikMulaiAudio.setText(formatDuration(mp.getCurrentPosition()));
+                    tvDetikAkhirAudio.setText(formatDuration(duration - mp.getCurrentPosition()));
                 }
             }
         });
@@ -183,11 +185,9 @@ public class AudioGuidance extends AppCompatActivity {
         seekBarAudio = findViewById(R.id.seekBarAudio);
         tvNamaTempatAudio = findViewById(R.id.tvNamaTempatAudio);
         tvDetikAkhirAudio = findViewById(R.id.tvDetikAkhirAudio);
-        tvDetikMulaiAudio = findViewById(R.id.tvDetikMulaiAudio);
     }
 
     private void setData() {
-        long duration;
 
         tvNamaTempatAudio.setText(name);
         Glide.with(this).load(imageUrl).into(ivFotoLokasiAudio);

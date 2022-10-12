@@ -9,12 +9,14 @@
         android:layout_margin="8dp"
         app:cardCornerRadius="5dp"
         app:cardElevation="4dp"
-        android:id="@+id/museumView">
+        android:id="@+id/museumView"
+        app:cardBackgroundColor="@color/real_white">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            app:cardBackgroundColor="@color/real_white">
 
             <ImageView
                 android:id="@+id/lokasiFoto"
