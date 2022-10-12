@@ -10,11 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ScrollView;
 
 public class HomeFragment extends Fragment {
     Button btnTodetail;
     CardView cardViewMuseum,cardViewWaters,cardViewMountain,cardViewCeremonies,cardViewDances,cardViewFoods;
-
+    ScrollView myScrollView;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -28,6 +29,9 @@ public class HomeFragment extends Fragment {
         cardViewWaters = view.findViewById(R.id.boxWaters);
         cardViewMountain = view.findViewById(R.id.boxMountain);
         cardViewDances = view.findViewById(R.id.boxDances);
+        myScrollView = view.findViewById(R.id.scrollView);
+        myScrollView.setVerticalScrollBarEnabled(false);
+        myScrollView.setHorizontalScrollBarEnabled(false);
 
 
         cardViewMuseum.setOnClickListener(v -> {

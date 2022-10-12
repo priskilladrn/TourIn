@@ -114,12 +114,12 @@ public class AudioGuidance extends AppCompatActivity {
                                     mHandler.postDelayed(runnable, 1000);
                                 }
                             })
-                            .setPositiveButton("Back to Home", new DialogInterface.OnClickListener() {
+                            .setPositiveButton("Finish", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     if (mp != null) mp.release();
                                     mHandler.removeCallbacks(runnable);
-                                    startActivity(new Intent(AudioGuidance.this, MainActivity.class));
+                                    //startActivity(new Intent(AudioGuidance.this, MainActivity.class));
                                     finish();
                                 }
                             }).show();
