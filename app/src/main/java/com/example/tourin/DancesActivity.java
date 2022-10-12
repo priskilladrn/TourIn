@@ -32,35 +32,39 @@ public class DancesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dances);
         placeMuseum = findViewById(R.id.placeMuseum);
-        museumAdapter = new MuseumAdapter(getApplication());
-        museumAdapter.notifyDataSetChanged();
-        databaseReference.child("Places").child("Dances").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                placeMuseumVector = new Vector<>();
-                placeMuseumVector.clear();
-                for (DataSnapshot data: snapshot.getChildren()){
-                    placeId = data.getKey().toString();
-                    placeImage = data.child("Image").getValue().toString();
-                    placeName = data.child("Name").getValue().toString();
-                    placeLocation = data.child("Location").getValue().toString();
-                    placeDescription = data.child("Description").getValue().toString();
-                    Log.wtf("data", placeId + ", " + placeLocation + ", " + placeName);
-                    menu = new Menu(placeLocation, placeName, placeImage, placeId,placeDescription);
-                    placeMuseumVector.add(menu);
+        if(databaseReference != null){
+            placeMuseumVector = new Vector<>();
+            placeMuseumVector.clear();
+            databaseReference.child("Places").child("Dances").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    placeMuseumVector = new Vector<>();
+                    placeMuseumVector.clear();
+                    for (DataSnapshot data: snapshot.getChildren()){
+                        placeId = data.getKey().toString();
+                        placeImage = data.child("Image").getValue().toString();
+                        placeName = data.child("Name").getValue().toString();
+                        placeLocation = data.child("Location").getValue().toString();
+                        placeDescription = data.child("Description").getValue().toString();
+                        Log.wtf("data", placeId + ", " + placeLocation + ", " + placeName);
+                        menu = new Menu(placeLocation, placeName, placeImage, placeId,placeDescription);
+                        placeMuseumVector.add(menu);
+
+                    }
+
+                    MuseumAdapter museumAdapter = new MuseumAdapter(DancesActivity.this,placeMuseumVector);
+                    placeMuseum.setAdapter(museumAdapter);
+                    placeMuseum.setLayoutManager(new LinearLayoutManager(DancesActivity.this));
+                    museumAdapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
                 }
-                museumAdapter.setMuseum(placeMuseumVector);
-                placeMuseum.setAdapter(museumAdapter);
-                placeMuseum.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-            }
+            });
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
+        }
 
 
 

@@ -42,11 +42,6 @@ public class SearchActivity extends AppCompatActivity {
 
         rv = findViewById(R.id.rvSearch);
         searchView = findViewById(R.id.searchView);
-        btnBackSearch = findViewById(R.id.btnBackSearch);
-
-        btnBackSearch.setOnClickListener(v -> {
-            finish();
-        });
 
         if (databaseReference != null) {
             list = new Vector<>();

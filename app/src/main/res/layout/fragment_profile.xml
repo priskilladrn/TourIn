@@ -16,10 +16,10 @@
            android:layout_height="match_parent"
            android:id="@+id/TextProfile"
            android:text="Profile"
+           android:layout_marginLeft="20dp"
+           android:layout_marginTop="20dp"
            android:textSize="32dp"
-           android:textColor="@color/black"
-           android:layout_marginTop="45dp"
-           android:layout_marginLeft="30dp"/>
+           android:textStyle="bold"/>
 
        <LinearLayout
            android:layout_width="match_parent"
@@ -30,8 +30,8 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="Name"
-               android:layout_marginLeft="30dp"
-               android:layout_marginTop="30dp"
+               android:layout_marginLeft="20dp"
+               android:layout_marginTop="20dp"
                android:layout_marginBottom="20dp"
                />
 
@@ -40,8 +40,8 @@
                android:layout_height="wrap_content"
                android:id="@+id/textUserName"
                android:text="Name User"
-               android:layout_marginLeft="30dp"
-               android:layout_marginTop="30dp"
+               android:layout_marginLeft="20dp"
+               android:layout_marginTop="20dp"
                android:layout_marginBottom="20dp"
                />
        </LinearLayout>
@@ -55,7 +55,7 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="Email"
-               android:layout_marginLeft="30dp"
+               android:layout_marginLeft="20dp"
                android:layout_marginTop="15dp"
                android:layout_marginBottom="20dp"
                />
@@ -65,7 +65,7 @@
                android:layout_height="wrap_content"
                android:id="@+id/textUserEmail"
                android:text="Email User"
-               android:layout_marginLeft="30dp"
+               android:layout_marginLeft="20dp"
                android:layout_marginTop="15dp"
                android:layout_marginBottom="20dp"
                />
@@ -80,7 +80,8 @@
            android:layout_centerHorizontal="true"
            android:layout_marginBottom="50dp"
            android:layout_marginTop="36dp"
-           android:layout_marginHorizontal="30dp"/>
+           android:layout_marginHorizontal="30dp"
+           android:backgroundTint="#D73838"/>
    </LinearLayout>
 
 </FrameLayout>

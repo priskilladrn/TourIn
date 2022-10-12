@@ -26,6 +26,7 @@
                 tools:layout_editor_absoluteX="31dp"
                 tools:layout_editor_absoluteY="17dp" />
 
+<!--            //image slide-->
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="350dp"
@@ -147,40 +148,6 @@
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_margin="17dp"
-                        app:cardCornerRadius="20dp"
-                        app:cardElevation="10dp"
-                        android:id="@+id/boxCeremonies"
-                        android:backgroundTint="@color/white">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_marginTop="10dp"
-                                android:src="@drawable/ceremonies"
-                                />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:text="Ceremonies"
-                                android:textSize="12sp" />
-
-                        </LinearLayout>
-
-                    </androidx.cardview.widget.CardView>
-
                     <androidx.cardview.widget.CardView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
@@ -208,39 +175,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:text="Dances"
-                                android:textSize="12sp" />
-
-                        </LinearLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_margin="17dp"
-                        app:cardCornerRadius="20dp"
-                        app:cardElevation="10dp"
-                        android:id="@+id/boxFoods"
-                        android:backgroundTint="@color/white">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_marginTop="10dp"
-                                android:src="@drawable/food"
-                                />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:text="Foods"
                                 android:textSize="12sp" />
 
                         </LinearLayout>
