@@ -1,8 +1,10 @@
 package com.example.tourin;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
@@ -11,11 +13,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ScrollView;
+import android.widget.Toast;
+
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
+
     Button btnTodetail;
     CardView cardViewMuseum,cardViewWaters,cardViewMountain,cardViewCeremonies,cardViewDances,cardViewFoods;
     ScrollView myScrollView;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -32,6 +52,7 @@ public class HomeFragment extends Fragment {
         myScrollView = view.findViewById(R.id.scrollView);
         myScrollView.setVerticalScrollBarEnabled(false);
         myScrollView.setHorizontalScrollBarEnabled(false);
+
 
 
         cardViewMuseum.setOnClickListener(v -> {
