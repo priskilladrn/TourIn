@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.ar.core.Anchor;
@@ -25,6 +26,7 @@ import java.util.Objects;
 
 public class ArActivity extends AppCompatActivity {
     private ArFragment arCam;
+    private ImageView btnClose;
 
     private int clickNo = 0;
 
@@ -51,6 +53,11 @@ public class ArActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ar);
 
+        btnClose = findViewById(R.id.btnClose);
+        btnClose.setOnClickListener(v -> {
+            finish();
+        });
+
         if (checkSystemSupport(this)) {
             arCam = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.arCameraArea);
             arCam.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
@@ -58,7 +65,7 @@ public class ArActivity extends AppCompatActivity {
                 if (clickNo == 1) {
                     Anchor anchor = hitResult.createAnchor();
                     ModelRenderable.builder()
-                            .setSource(this, R.raw.cottage)
+                            .setSource(this, R.raw.house)
                             .setIsFilamentGltf(true)
                             .build()
                             .thenAccept(modelRenderable -> addModel(anchor, modelRenderable)
@@ -80,7 +87,7 @@ public class ArActivity extends AppCompatActivity {
         anchorNode.setParent(arCam.getArSceneView().getScene());
 
         TransformableNode node = new TransformableNode(arCam.getTransformationSystem());
-        node.getScaleController().setMaxScale(0.02f);
+        node.getScaleController().setMaxScale(0.2f);
         node.getScaleController().setMinScale(0.01f);
 
         node.setParent(anchorNode);
