@@ -65,7 +65,6 @@
                        android:layout_height="wrap_content"
                        android:id="@+id/tvLokasi"
                        android:text="Location"
-                       android:textStyle="bold"
                        android:textColor="#212226"
                        android:padding="8dp"/>
 
