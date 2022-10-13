@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DetailActivity"
-    android:background="#F0F1F5">
+    android:background="@color/white">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -135,8 +135,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:backgroundTint="#0068B7"
-        android:src="@drawable/ic_baseline_bookmark_24"
+        android:src="@drawable/ic_baseline_bookmark_border_24"
         android:contentDescription="add to saved"
-        android:layout_margin="16dp" />
+        android:layout_margin="16dp"
+        app:tint="@color/white"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

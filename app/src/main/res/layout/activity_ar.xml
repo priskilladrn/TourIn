@@ -16,7 +16,8 @@
         android:src="@drawable/ic_close"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:translationZ="1dp"/>
+        android:translationZ="1dp"
+        app:tint="@color/black"/>
 
     <fragment
         android:id="@+id/arCameraArea"

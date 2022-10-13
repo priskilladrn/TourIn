@@ -25,11 +25,10 @@ import java.util.concurrent.TimeUnit;
 public class AudioGuidance extends AppCompatActivity {
     private ImageView ivFotoLokasiAudio,ivRewindAudio,ivPauseAudio,ivFastAudio, ivPlayAudio;
     private SeekBar seekBarAudio;
-    private TextView tvNamaTempatAudio,tvDetikAkhirAudio, tvDetikMulaiAudio;
+    private TextView tvNamaTempatAudio,tvDetikAkhirAudio;
 
-    private String imageUrl;
-    private String audio;
-    private String name;
+    private String imageUrl, audio, name;
+    private long duration;
     private MediaPlayer mp;
     private Integer length;
     private final Handler mHandler = new Handler();
@@ -92,10 +91,10 @@ public class AudioGuidance extends AppCompatActivity {
                     if (mp.getCurrentPosition() >= mp.getDuration()) {
                         ivPauseAudio.setVisibility(View.GONE);
                         ivPlayAudio.setVisibility(View.VISIBLE);
-                        tvDetikMulaiAudio.setText(formatDuration(mp.getDuration()));
+                        tvDetikAkhirAudio.setText(formatDuration(duration - mp.getDuration()));
                         isFinished = true;
                     } else {
-                        tvDetikMulaiAudio.setText(formatDuration(mp.getCurrentPosition()));
+                        tvDetikAkhirAudio.setText(formatDuration(duration - mp.getCurrentPosition()));
                     }
                     mHandler.postDelayed(this, 1000);
                 }
@@ -151,7 +150,7 @@ public class AudioGuidance extends AppCompatActivity {
                     } else {
                         mp.seekTo(seekBar.getProgress() * 1000);
                     }
-                    tvDetikMulaiAudio.setText(formatDuration(mp.getCurrentPosition()));
+                    tvDetikAkhirAudio.setText(formatDuration(duration - mp.getCurrentPosition()));
                 }
             }
             //Notification that the user has finished a touch gesture.
@@ -168,7 +167,7 @@ public class AudioGuidance extends AppCompatActivity {
                     } else {
                         mp.seekTo(seekBar.getProgress() * 1000);
                     }
-                    tvDetikMulaiAudio.setText(formatDuration(mp.getCurrentPosition()));
+                    tvDetikAkhirAudio.setText(formatDuration(duration - mp.getCurrentPosition()));
                 }
             }
         });
@@ -183,12 +182,9 @@ public class AudioGuidance extends AppCompatActivity {
         seekBarAudio = findViewById(R.id.seekBarAudio);
         tvNamaTempatAudio = findViewById(R.id.tvNamaTempatAudio);
         tvDetikAkhirAudio = findViewById(R.id.tvDetikAkhirAudio);
-        tvDetikMulaiAudio = findViewById(R.id.tvDetikMulaiAudio);
     }
 
     private void setData() {
-        long duration;
-
         tvNamaTempatAudio.setText(name);
         Glide.with(this).load(imageUrl).into(ivFotoLokasiAudio);
 

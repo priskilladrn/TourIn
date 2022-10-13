@@ -86,6 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
         if(!passwordText.equals(retypePasswordText)){
             retypePassword.setError("password must be the same");
             retypePassword.requestFocus();
+            return;
         }
 
         progressBar.setVisibility(View.VISIBLE);
