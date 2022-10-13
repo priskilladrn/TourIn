@@ -91,7 +91,7 @@ public class HomeFragment extends Fragment {
             if (databaseReference != null){
                 editorVector = new Vector<>();
                 editorVector.clear();
-            databaseReference.child("Places").child("Museum").addValueEventListener(new ValueEventListener() {
+            databaseReference.child("Recommend").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot data2: dataSnapshot.getChildren()){
