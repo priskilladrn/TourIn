@@ -2,11 +2,9 @@ package com.example.tourin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,7 +16,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.tourin.Model.Place;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.ar.sceneform.lullmodel.Color;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -60,7 +57,6 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
         //get id from intent
         PlaceId = getIntent().getStringExtra("id");
-        checkLikePost(PlaceId);
 
         //find data from place Id
         databaseReference.child("Places").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -123,13 +119,12 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                         for(DataSnapshot dataSnapshot: snapshot.getChildren()){
                             dataSnapshot.getRef().removeValue();
                         }
-                        floatingActionButton.setImageResource(R.drawable.ic_baseline_bookmark_border_24);
                         Toast.makeText(DetailActivity.this, "Removed from Saved List", Toast.LENGTH_SHORT).show();
                     }else{
                         //add to saved
                         DatabaseReference reference = databaseReference.child("Users").child(currentUser.getUid()).child("post").push();
                         reference.setValue(places);
-                        floatingActionButton.setImageResource(R.drawable.ic_baseline_bookmark_24);
+
                         Toast.makeText(DetailActivity.this, "Added to Saved List", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -153,29 +148,6 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             this.startActivity(new Intent(DetailActivity.this, ArActivity.class));
         }
     }
-
-    private void checkLikePost(String PlaceId){
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = auth.getCurrentUser();
-        databaseReference.child("Users").child(currentUser.getUid()).child("post").orderByChild("placeId").equalTo(PlaceId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    //id exist then set button saved
-                    floatingActionButton.setImageResource(R.drawable.ic_baseline_bookmark_24);
-                }else{
-                    //set button to not saved yet
-                    floatingActionButton.setImageResource(R.drawable.ic_baseline_bookmark_border_24);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
 
     private void loadFragment(){
         Fragment fragment = new MapsFragment(latitude, longitude, name);

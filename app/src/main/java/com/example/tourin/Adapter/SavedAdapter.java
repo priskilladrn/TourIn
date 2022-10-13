@@ -56,11 +56,6 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.ViewHolder> 
         return places.size();
     }
 
-    public void removeItem(int position) {
-        places.remove(position);
-        notifyItemRemoved(position);
-    }
-
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         CardView view;
         ImageView imageView;
@@ -87,5 +82,4 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.ViewHolder> 
             }
         }
     }
-
 }

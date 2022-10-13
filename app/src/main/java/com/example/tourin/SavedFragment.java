@@ -4,20 +4,16 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.tourin.Adapter.SavedAdapter;
 import com.example.tourin.Model.Place;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -64,8 +60,6 @@ public class SavedFragment extends Fragment implements SwipeRefreshLayout.OnRefr
         placeRv = view.findViewById(R.id.placeRv);
         savedAdapter = new SavedAdapter(getContext());
         savedAdapter.notifyDataSetChanged();
-
-        enableSwipeToDeleteAndUndo();
 
 
         //swipe refresh layout
@@ -123,45 +117,5 @@ public class SavedFragment extends Fragment implements SwipeRefreshLayout.OnRefr
     @Override
     public void onRefresh() {
         getData();
-    }
-
-    private void enableSwipeToDeleteAndUndo() {
-        SwipeToDeleteCallback swipeToDeleteCallback = new SwipeToDeleteCallback(getContext()) {
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-                final int position = viewHolder.getAdapterPosition();
-                String placeId = placeVector.get(position).getPlaceId();
-                Log.wtf("testSaveDelete", placeId);
-                deleteData(placeId);
-
-                savedAdapter.removeItem(position);
-            }
-        };
-
-        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeToDeleteCallback);
-        itemTouchhelper.attachToRecyclerView(placeRv);
-    }
-
-    private void deleteData(String placeId){
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = auth.getCurrentUser();
-        databaseReference.child("Users").child(currentUser.getUid()).child("post").orderByChild("placeId").equalTo(placeId).addListenerForSingleValueEvent(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    //id exist then remove from saved
-                    for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                        dataSnapshot.getRef().removeValue();
-                    }
-                    Toast.makeText(getContext(), "Removed from Saved List", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 }

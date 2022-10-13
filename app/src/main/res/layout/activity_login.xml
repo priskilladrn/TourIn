@@ -97,7 +97,6 @@
         android:layout_height="55dp"
         android:layout_marginTop="25dp"
         android:backgroundTint="@color/orange"
-        android:textColor="@color/black"
         android:text="Login"
         android:textStyle="bold"
         app:cornerRadius="15dp"
@@ -118,8 +117,7 @@
                 android:layout_height="wrap_content"
                 android:text="Don't have an account?"
                 android:layout_marginTop="5dp"
-                android:textSize="16dp"
-                android:textColor="@color/dark_gray"/>
+                android:textSize="16dp"/>
 
             <TextView
                 android:id="@+id/tvRegisterLogin"

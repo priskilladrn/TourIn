@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
@@ -29,6 +28,7 @@ public class SearchActivity extends AppCompatActivity {
     final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tourin-839e2-default-rtdb.firebaseio.com/");
     Vector<Place> list;
     RecyclerView rv;
+    ImageView btnBackSearch;
 
     SearchView searchView;
     Place place;
@@ -42,9 +42,6 @@ public class SearchActivity extends AppCompatActivity {
 
         rv = findViewById(R.id.rvSearch);
         searchView = findViewById(R.id.searchView);
-        ImageView searchIcon = searchView.findViewById(androidx.appcompat.R.id.search_mag_icon);
-        searchIcon.setColorFilter(getResources().getColor(R.color.dark_gray),
-                PorterDuff.Mode.SRC_IN);
 
         if (databaseReference != null) {
             list = new Vector<>();
