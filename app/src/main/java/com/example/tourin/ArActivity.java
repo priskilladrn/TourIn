@@ -88,7 +88,7 @@ public class ArActivity extends AppCompatActivity {
 
         TransformableNode node = new TransformableNode(arCam.getTransformationSystem());
         node.getScaleController().setMaxScale(0.2f);
-        node.getScaleController().setMinScale(0.01f);
+        node.getScaleController().setMinScale(0.05f);
 
         node.setParent(anchorNode);
         node.setRenderable(modelRenderable);
