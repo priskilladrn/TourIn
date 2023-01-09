@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailActivity"
+    android:background="@color/white">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:layout_height="350dp"
+                android:layout_gravity="center"
+                android:id="@+id/detailPic"
+                android:src="@drawable/ic_launcher_background"
+                />
+
+            <TextView
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Region"
+                android:layout_marginTop="15dp"
+                android:id="@+id/detailRegion"
+                android:textColor="#646161"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_marginBottom="10dp"
+                android:textSize="18dp"
+                />
+
+            <TextView
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Location Name"
+                android:id="@+id/detailName"
+                android:textColor="#161616"
+                android:fontFamily="@font/poppins_semibold"
+                android:layout_marginBottom="20dp"
+                android:textSize="30dp"
+                />
+
+            <FrameLayout
+                android:id="@+id/frameLayoutDetail"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="10dp"
+                android:scaleType="centerCrop"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/arPic"
+                    android:layout_width="fill_parent"
+                    android:layout_height="200dp"
+                    android:adjustViewBounds="true"
+                    android:paddingHorizontal="15dp"
+                    android:src="@drawable/rumah3d"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btnAr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="View in 3D"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/arPic"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Descriptions"
+                android:textSize="20dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="#161616"
+                />
+
+            <TextView
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="#4D4C4C"
+                android:justificationMode="inter_word"
+                android:id="@+id/detailDescription"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Descriptions"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="15dp"
+                android:textAlignment="center"
+                android:id="@+id/buttonStart"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="30dp"
+                android:text="Listen Now"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:backgroundTint="#0068B7"
+        android:src="@drawable/ic_baseline_bookmark_border_24"
+        android:contentDescription="add to saved"
+        android:layout_margin="16dp"
+        app:tint="@color/white"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
