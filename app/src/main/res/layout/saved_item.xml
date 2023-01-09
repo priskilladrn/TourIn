@@ -48,9 +48,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:id="@+id/tvName"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="Name"
                 android:textColor="#212226"
-                android:textSize="18dp"/>
+                android:textSize="18sp"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -60,8 +61,8 @@
                 android:layout_marginTop="10dp"
                 android:text="Location"
                 android:textColor="#212226"
-                android:textFontWeight="1"
-                android:textSize="12dp"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="14sp"
                 />
 
         </LinearLayout>

@@ -27,7 +27,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvNamaTempat"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Name"
+            android:textSize="16sp"
             android:layout_marginTop="10dp"
             android:textColor="#212226"
             android:layout_gravity="center"/>
@@ -64,6 +66,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/tvLokasi"
                     android:text="Location"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/poppins_medium"
                     android:textColor="#212226"
                     android:padding="8dp"/>
 
@@ -76,6 +80,8 @@
                 android:id="@+id/tvDescription"
                 android:text="Description"
                 android:textColor="#212226"
+                android:textSize="15sp"
+                android:fontFamily="@font/poppins_regular"
                 android:padding="8dp"/>
 
         </LinearLayout>

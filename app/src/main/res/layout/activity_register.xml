@@ -33,7 +33,7 @@
             android:text="Create Account"
             android:textColor="@color/black"
             android:textSize="30dp"
-            android:textStyle="bold"
+            android:fontFamily="@font/poppins_medium"
             android:layout_gravity="center"/>
 
         <LinearLayout
@@ -46,10 +46,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Name"
                 android:textColor="@color/dark_gray"
-                android:textSize="17sp" />
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/edtNameRegister"
@@ -71,10 +71,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Email"
                 android:textColor="@color/dark_gray"
-                android:textSize="17sp" />
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/edtEmailRegister"
@@ -96,10 +96,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Password"
                 android:textColor="@color/dark_gray"
-                android:textSize="17sp"/>
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/edtPasswordRegister"
@@ -123,10 +123,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Re-type Password"
                 android:textColor="@color/dark_gray"
-                android:textSize="17sp"/>
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/edtRetypeRegister"
@@ -147,8 +147,8 @@
             android:layout_marginTop="36dp"
             android:backgroundTint="@color/orange"
             android:text="Create Account"
-            android:textStyle="bold"
-            app:cornerRadius="15dp"
+            android:fontFamily="@font/poppins_semibold"
+            app:cornerRadius="15sp"
             android:layout_gravity="center"
             android:textColor="@color/black"/>
 
@@ -166,8 +166,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Already have an account?"
+                android:fontFamily="@font/poppins_regular"
                 android:layout_marginTop="5dp"
-                android:textSize="16dp"/>
+                android:textSize="14sp"/>
 
             <TextView
                 android:id="@+id/tvLoginRegister"
@@ -175,10 +176,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Login"
                 android:textColor="#00479D"
-                android:textSize="16dp" />
+                android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
 

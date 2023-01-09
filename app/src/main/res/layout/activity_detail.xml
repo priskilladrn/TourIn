@@ -35,7 +35,7 @@
                 android:layout_marginTop="15dp"
                 android:id="@+id/detailRegion"
                 android:textColor="#646161"
-                android:textFontWeight="7"
+                android:fontFamily="@font/poppins_medium"
                 android:layout_marginBottom="10dp"
                 android:textSize="18dp"
                 />
@@ -48,7 +48,7 @@
                 android:text="Location Name"
                 android:id="@+id/detailName"
                 android:textColor="#161616"
-                android:textStyle="bold"
+                android:fontFamily="@font/poppins_semibold"
                 android:layout_marginBottom="20dp"
                 android:textSize="30dp"
                 />
@@ -83,6 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="View in 3D"
+                    android:fontFamily="@font/poppins_medium"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@+id/arPic"
@@ -98,7 +99,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Descriptions"
                 android:textSize="20dp"
-                android:textFontWeight="5"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="#161616"
                 />
 
@@ -111,7 +112,7 @@
                 android:textColor="#4D4C4C"
                 android:justificationMode="inter_word"
                 android:id="@+id/detailDescription"
-                android:textFontWeight="4"
+                android:fontFamily="@font/poppins_regular"
                 android:text="Descriptions"/>
 
             <Button
