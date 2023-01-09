@@ -13,4 +13,7 @@
     <color name="navbar">#D7DDEB</color>
     <color name="white">#F0F1F5</color>
     <color name="RED">#D73838</color>
+    <color name="blue">#0099D4</color>
+    <color name="gray">#B6B6B6</color>
+    <color name="real_blue">#0068B7</color>
 </resources>

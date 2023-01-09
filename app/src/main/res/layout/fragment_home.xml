@@ -18,27 +18,58 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Explore Now"
+                    android:textSize="32dp"
+                    android:textStyle="bold"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="31dp"
+                    tools:layout_editor_absoluteY="17dp" />
+
+                <com.denzcoskun.imageslider.ImageSlider
+                    android:id="@+id/image_slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="340dp"
+                    app:iss_auto_cycle="true"
+                    app:iss_delay="0"
+                    app:iss_period="1000"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:text="Explore Now"
-                android:textSize="32dp"
+                android:text="TourIn Editor’s Pick "
+                android:layout_marginLeft="17dp"
                 android:textStyle="bold"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="31dp"
-                tools:layout_editor_absoluteY="17dp" />
+                android:textSize="24dp"
+                android:layout_marginTop="10dp"
+                />
 
-<!--            //image slide-->
-            <com.denzcoskun.imageslider.ImageSlider
-                android:id="@+id/image_slider"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/turEditorPick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="horizontal" />
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="250dp"
-                app:iss_auto_cycle="true"
-                app:iss_period="1000"
-                app:iss_delay="0"
-                android:layout_margin="20dp"/>
+                android:layout_height="wrap_content"
+                android:text="Categories"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="17dp"
+                />
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
@@ -53,131 +84,139 @@
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="168dp"
+                        android:layout_height="64dp"
                         android:layout_margin="17dp"
                         app:cardCornerRadius="15dp"
                         app:cardElevation="10dp"
                         android:id="@+id/boxMuseum"
-                        android:backgroundTint="@color/white">
+                        android:backgroundTint="@color/blue">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
+                            android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_margin="15dp"
                                 android:src="@drawable/museum"
                                 />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="10dp"
                                 android:text="Museum"
-                                android:textSize="12sp" />
+                                android:textStyle="bold"
+                                android:textColor="@color/white"
+                                android:textSize="16sp" />
 
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="168dp"
+                        android:layout_height="64dp"
                         android:layout_margin="17dp"
-                        app:cardCornerRadius="20dp"
+                        app:cardCornerRadius="15dp"
                         app:cardElevation="10dp"
                         android:id="@+id/boxWaters"
-                        android:backgroundTint="@color/white">
+                        android:backgroundTint="@color/blue">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
+                            android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_margin="15dp"
                                 android:src="@drawable/waters"
                                 />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
                                 android:text="Waters"
-                                android:textSize="12sp" />
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="10dp"
+                                android:textStyle="bold"
+                                android:textSize="16sp"
+                                android:textColor="@color/white"/>
 
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="168dp"
+                        android:layout_height="64dp"
                         android:layout_margin="17dp"
-                        app:cardCornerRadius="20dp"
+                        app:cardCornerRadius="15dp"
                         app:cardElevation="10dp"
                         android:id="@+id/boxMountain"
-                        android:backgroundTint="@color/white">
+                        android:backgroundTint="@color/blue">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
+                            android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_margin="15dp"
                                 android:src="@drawable/mountain"
                                 />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="10dp"
                                 android:text="Mountains"
-                                android:textSize="12sp" />
+                                android:layout_gravity="center"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:textSize="16sp" />
 
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="168dp"
+                        android:layout_height="64dp"
                         android:layout_margin="17dp"
-                        app:cardCornerRadius="20dp"
+                        app:cardCornerRadius="15dp"
                         app:cardElevation="10dp"
                         android:id="@+id/boxDances"
-                        android:backgroundTint="@color/white">
+                        android:backgroundTint="@color/blue">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
+                            android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_margin="15dp"
                                 android:src="@drawable/dance"
                                 />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="10dp"
                                 android:text="Dances"
-                                android:textSize="12sp" />
+                                android:textSize="16sp"
+                                android:textColor="@color/white"
+                                android:layout_gravity="center"
+                                android:textStyle="bold"/>
 
                         </LinearLayout>
 
@@ -187,22 +226,6 @@
 
             </HorizontalScrollView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TourIn Editor’s Pick "
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="32dp"
-                android:textStyle="bold"
-                android:textSize="24dp"
-                />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/turEditorPick"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:orientation="horizontal" />
 
 
         </LinearLayout>
