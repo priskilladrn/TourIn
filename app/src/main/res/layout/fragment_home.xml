@@ -31,6 +31,20 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Let's Explore Indonesia"
+                    android:textColor="@color/white"
+                    android:textSize="28sp"
+                    android:translationZ="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginTop="20dp"/>
+
+
                 <com.denzcoskun.imageslider.ImageSlider
                     android:id="@+id/image_slider"
                     android:layout_width="match_parent"
@@ -41,19 +55,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="Let's Explore Indonesia"
-                        android:textColor="@color/white"
-                        android:textSize="28sp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginLeft="17dp"
-                        android:translationZ="100dp"
-                        android:textStyle="bold"
-                        tools:ignore="MissingConstraints" />
                 </com.denzcoskun.imageslider.ImageSlider>
             </androidx.constraintlayout.widget.ConstraintLayout>
             <TextView
