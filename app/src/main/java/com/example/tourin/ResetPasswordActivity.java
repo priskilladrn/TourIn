@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class ResetPasswordActivity extends AppCompatActivity {
     private EditText edtEmailPopup;
     private Button btnResetPopup;
+    private ImageView btnCloseReset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,10 @@ public class ResetPasswordActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         init();
+
+        btnCloseReset.setOnClickListener(v -> {
+            finish();
+        });
 
         btnResetPopup.setOnClickListener(v -> {
             String email = edtEmailPopup.getText().toString().trim();
@@ -50,5 +55,6 @@ public class ResetPasswordActivity extends AppCompatActivity {
     private void init() {
         edtEmailPopup = findViewById(R.id.edtEmailPopup);
         btnResetPopup = findViewById(R.id.btnResetPopup);
+        btnCloseReset = findViewById(R.id.btnCloseReset);
     }
 }
