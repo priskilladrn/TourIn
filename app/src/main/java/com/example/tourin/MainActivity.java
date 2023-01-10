@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         FirebaseUser currentUser = auth.getCurrentUser();
         bottomNavigation = findViewById(R.id.bottomNav);
         bottomNavigation.setOnItemSelectedListener(this);
+        switchFragment(new HomeFragment());
         databaseReference.child("Users").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -124,9 +125,10 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         ft.commit();
     }
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.home) {
-            switchFragment(new HomeFragment());
-        } else if(item.getItemId() == R.id.search) {
+//        if(item.getItemId() == R.id.home) {
+//            switchFragment(new HomeFragment());
+//        } else
+        if(item.getItemId() == R.id.search) {
             startActivity(new Intent(MainActivity.this, SearchActivity.class));
             finish();
             switchFragment(new HomeFragment());
@@ -134,6 +136,8 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
             switchFragment(new SavedFragment());
         } else if(item.getItemId() == R.id.profile){
             switchFragment(new ProfileFragment(username,email));
+        } else{
+            switchFragment(new HomeFragment());
         }
         return true;
     }
