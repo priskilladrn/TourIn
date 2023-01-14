@@ -65,7 +65,7 @@ public class ArActivity extends AppCompatActivity {
                 if (clickNo == 1) {
                     Anchor anchor = hitResult.createAnchor();
                     ModelRenderable.builder()
-                            .setSource(this, R.raw.house)
+                            .setSource(this, R.raw.mountain)
                             .setIsFilamentGltf(true)
                             .build()
                             .thenAccept(modelRenderable -> addModel(anchor, modelRenderable)
