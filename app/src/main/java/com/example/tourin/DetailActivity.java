@@ -74,6 +74,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                         if(key.equals(PlaceId)){
                             region = id.child("Location").getValue().toString();
                             name = id.child("Name").getValue().toString();
+                            Log.wtf("nama", name);
                             description = id.child("Description").getValue().toString();
                             imageUrl = id.child("Image").getValue().toString();
                             Audio = id.child("Audio").getValue().toString();
@@ -151,9 +152,10 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             //start intent
             this.startActivity(i);
         } else if(v == ar){
-            if (name == "Kete Kesu"){
+            if (name.equals("Kete Kesu")){
                 this.startActivity(new Intent(DetailActivity.this, ArActivity.class));
             } else {
+                Log.wtf("name", name);
                 Intent i = new Intent(DetailActivity.this, VideoActivity.class);
                 i.putExtra("video", video);
                 this.startActivity(i);

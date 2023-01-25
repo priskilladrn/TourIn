@@ -18,8 +18,8 @@
         android:translationZ="1dp"
         app:tint="@color/black"/>
 
-    <VideoView
-        android:id="@+id/videoView"
+    <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+        android:id="@+id/videoExoPlayer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
