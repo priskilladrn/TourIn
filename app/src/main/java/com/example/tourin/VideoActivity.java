@@ -41,6 +41,7 @@ public class VideoActivity extends AppCompatActivity {
     private SimpleExoPlayer exoPlayer;
     private String video;
     private ImageView btnCloseVideo;
+    private MediaSource mediaSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class VideoActivity extends AppCompatActivity {
             Uri videouri = Uri.parse(video);
             DefaultHttpDataSourceFactory dataSourceFactory = new DefaultHttpDataSourceFactory("exoplayer_video");
             ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
-            MediaSource mediaSource = new ExtractorMediaSource(videouri, dataSourceFactory, extractorsFactory, null, null);
+            mediaSource = new ExtractorMediaSource(videouri, dataSourceFactory, extractorsFactory, null, null);
             videoExoPlayer.setPlayer(exoPlayer);
             exoPlayer.prepare(mediaSource);
             exoPlayer.setPlayWhenReady(true);
@@ -66,29 +67,27 @@ public class VideoActivity extends AppCompatActivity {
 
         }
 
-//        MediaController mediaController = new MediaController(this);
-//        videoView.setVideoPath(video);
-//        mediaController.setAnchorView(videoView);
-//
-//        videoView.requestFocus();
-//        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-//            @Override
-//            public void onPrepared(MediaPlayer mediaPlayer) {
-//                mediaPlayer.start();
-//            }
-//        });
-//
-//        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-//            @Override
-//            public void onCompletion(MediaPlayer mediaPlayer) {
-//                mediaPlayer.start();
-//            }
-//        });
-//
         btnCloseVideo.setOnClickListener(v -> {
             finish();
         });
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        exoPlayer.stop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        exoPlayer.stop();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        exoPlayer.prepare(mediaSource);
+    }
 }
