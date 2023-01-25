@@ -36,7 +36,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     Button start, ar;
     FloatingActionButton floatingActionButton;
 
-    public String region, name, description, imageUrl, PlaceId, Audio;
+    public String region, name, description, imageUrl, PlaceId, Audio, video;
     public Double latitude, longitude;
 
     final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tourin-839e2-default-rtdb.firebaseio.com/");
@@ -79,6 +79,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                             Audio = id.child("Audio").getValue().toString();
                             latitude = (Double) id.child("Latitude").getValue();
                             longitude = (Double) id.child("Longitude").getValue();
+                            video = id.child("Video").getValue().toString();
 
 
                             Log.wtf("keyhasil", "test masuk");
@@ -150,7 +151,13 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             //start intent
             this.startActivity(i);
         } else if(v == ar){
-            this.startActivity(new Intent(DetailActivity.this, ArActivity.class));
+            if (name == "Kete Kesu"){
+                this.startActivity(new Intent(DetailActivity.this, ArActivity.class));
+            } else {
+                Intent i = new Intent(DetailActivity.this, VideoActivity.class);
+                i.putExtra("video", video);
+                this.startActivity(i);
+            }
         }
     }
 

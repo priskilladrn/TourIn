@@ -31,12 +31,11 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ResetPasswordActivity"
+            android:name=".VideoActivity"
             android:exported="false" />
         <activity
             android:name=".ResetPasswordActivity"
             android:exported="false" />
-
         <meta-data
             android:name="com.google.ar.core"
             android:value="required" />
